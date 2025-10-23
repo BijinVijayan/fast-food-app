@@ -8,7 +8,7 @@ const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
   <View className={"tab-icon"}>
     <Image
       source={icon}
-      className={"size-7"}
+      className={"size-6"}
       tintColor={focused ? "#fe8c00" : "#5d5f6d"}
       resizeMode={"contain"}
     />
@@ -37,7 +37,7 @@ export default function TabLayout() {
           borderBottomLeftRadius: 50,
           borderBottomRightRadius: 50,
           marginHorizontal: 20,
-          height: 80,
+          height: 75,
           position: "absolute",
           bottom: 40,
           backgroundColor: "white",

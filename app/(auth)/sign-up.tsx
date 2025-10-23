@@ -31,7 +31,7 @@ const SignUp = () => {
     <View className={"gap-10 bg-white rounded-lg p-5 mt-6"}>
       <CustomInput
         placeholder={"Enter your name"}
-        label={"Email"}
+        label={"Name"}
         value={form.name}
         onChangeText={(text: string) =>
           setForm((prev) => ({ ...prev, name: text }))
