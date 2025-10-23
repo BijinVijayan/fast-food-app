@@ -32,7 +32,7 @@ const Search = () => {
   }, [category, query]);
 
   return (
-    <SafeAreaView className={"bg-white h-full"}>
+    <SafeAreaView className={"bg-neutral-50 h-full"}>
       <FlatList
         data={data}
         renderItem={({ item, index }) => {
@@ -53,7 +53,7 @@ const Search = () => {
         numColumns={2}
         contentContainerClassName={"gap-8 px-5 pb-36"}
         ListHeaderComponent={() => (
-          <View className="my-5 gap-5">
+          <View className="py-5 gap-5">
             <View className="flex-between flex-row w-full">
               <View className="flex-start">
                 <Text className="small-bold uppercase text-primary">
@@ -81,7 +81,7 @@ const Search = () => {
                 resizeMode="contain"
               />
               <Text className="text-gray-600 text-lg font-medium text-center">
-                No results found
+                Nothing matched your search
               </Text>
               <Text className="text-gray-400 text-sm text-center mt-1">
                 Try searching for something else 🍔

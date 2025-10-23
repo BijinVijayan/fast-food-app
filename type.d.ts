@@ -63,6 +63,12 @@ interface PaymentInfoStripeProps {
   valueStyle?: string;
 }
 
+interface ProfileDetailsProps {
+  icon: ImageSourcePropType;
+  value?: string;
+  heading: string;
+}
+
 interface CustomButtonProps {
   onPress?: () => void;
   title?: string;

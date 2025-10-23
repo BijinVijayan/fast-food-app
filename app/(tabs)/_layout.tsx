@@ -4,8 +4,15 @@ import { TabBarIconProps } from "@/type";
 import { Image, View, Text } from "react-native";
 import { images } from "@/constants";
 import cn from "clsx";
-const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
-  <View className={"tab-icon"}>
+import React from "react";
+import { useCartStore } from "@/store/cart.store";
+const TabBarIcon = ({
+  focused,
+  icon,
+  title,
+  badgeCount = 0,
+}: TabBarIconProps & { badgeCount?: number }) => (
+  <View className={"tab-icon relative"}>
     <Image
       source={icon}
       className={"size-6"}
@@ -20,11 +27,21 @@ const TabBarIcon = ({ focused, icon, title }: TabBarIconProps) => (
     >
       {title}
     </Text>
+    {badgeCount > 0 && (
+      <View className={"cart-badge-tab"}>
+        <Text className={"text-white small-bold "}>
+          {badgeCount > 9 ? "9+" : badgeCount}
+        </Text>
+      </View>
+    )}
   </View>
 );
 
 export default function TabLayout() {
   const { isAuthenticated } = useAuthStore();
+  const totalItems = useCartStore((state) =>
+    state.items.reduce((sum, item) => sum + item.quantity, 0),
+  );
   if (!isAuthenticated) return <Redirect href="/sign-in" />;
   return (
     <Tabs
@@ -42,10 +59,10 @@ export default function TabLayout() {
           bottom: 40,
           backgroundColor: "white",
           shadowColor: "#1a1a1a",
-          shadowOffset: { width: 0, height: 2 },
+          shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 5,
+          shadowRadius: 3,
+          elevation: 4,
         },
       }}
     >
@@ -76,7 +93,12 @@ export default function TabLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon title={"Cart"} icon={images.bag} focused={focused} />
+            <TabBarIcon
+              title={"Cart"}
+              icon={images.bag}
+              focused={focused}
+              badgeCount={totalItems}
+            />
           ),
         }}
       />

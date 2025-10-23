@@ -24,9 +24,12 @@
   .cart-badge {
     @apply absolute -top-2 -right-1 flex items-center justify-center size-5 bg-primary rounded-full;
   }
+  .cart-badge-tab {
+    @apply absolute -top-4 right-4 flex items-center justify-center size-5 bg-primary rounded-full;
+  }
 
   .cart-item {
-    @apply flex flex-row items-end justify-between mb-4 bg-white rounded-xl p-3 shadow-md shadow-dark-100/10;
+    @apply flex flex-row items-end justify-between mb-5 bg-white rounded-xl p-3 shadow-md shadow-dark-100/10;
   }
 
   .cart-item__image {
@@ -34,7 +37,7 @@
   }
 
   .cart-item__actions {
-    @apply flex flex-row items-center justify-center size-5 bg-primary/10 rounded-md;
+    @apply flex flex-row items-center justify-center size-6 bg-primary/10 rounded-md p-2;
   }
 
   .custom-btn {

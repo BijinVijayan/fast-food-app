@@ -93,6 +93,16 @@ export const getCurrentUser = async () => {
   }
 };
 
+export const appwriteLogout = async () => {
+  try {
+    await account.deleteSession("current");
+    console.log("User logged out successfully");
+  } catch (e: any) {
+    console.log("logout error:", e.message);
+    throw new Error(e.message);
+  }
+};
+
 export const getMenu = async ({ category, query }: GetMenuParams) => {
   try {
     const queries: string[] = [];
