@@ -7,7 +7,12 @@ import {
   Query,
   Storage,
 } from "react-native-appwrite";
-import { CreateUserParams, GetMenuParams, SignInParams } from "@/type";
+import {
+  CreateUserParams,
+  GetMenuDetailsParams,
+  GetMenuParams,
+  SignInParams,
+} from "@/type";
 import SignIn from "@/app/(auth)/sign-in";
 
 export const appwriteConfig = {
@@ -131,5 +136,21 @@ export const getCategories = async () => {
     return categories.documents;
   } catch (e: any) {
     throw new Error(e as string);
+  }
+};
+
+export const getMenuDetails = async ({ $id: menuId }: GetMenuDetailsParams) => {
+  try {
+    if (!menuId) throw new Error("Menu ID is required");
+    const menuDetails = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.menuCollectionId,
+      menuId,
+    );
+    // console.log("Menu details found:", menuDetails);
+    return menuDetails;
+  } catch (e) {
+    console.log("getMenuDetails error:", e);
+    throw new Error(String(e));
   }
 };

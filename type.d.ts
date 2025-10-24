@@ -112,3 +112,9 @@ interface GetMenuParams {
   category: string;
   query: string;
 }
+
+interface GetMenuDetailsParams {
+  category?: string;
+  query?: string;
+  $id: string;
+}

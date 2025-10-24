@@ -15,7 +15,9 @@ const CartButton = () => {
       <Image source={images.bag} className={"size-5"} resizeMode={"contain"} />
       {totalItems > 0 && (
         <View className={"cart-badge"}>
-          <Text className={"text-white small-bold "}>{totalItems}</Text>
+          <Text className={"text-white small-bold "}>
+            {totalItems >= 10 ? "9+" : totalItems}
+          </Text>
         </View>
       )}
     </TouchableOpacity>

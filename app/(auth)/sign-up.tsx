@@ -4,10 +4,14 @@ import CustomButton from "@/components/CustomButton";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import { createUser } from "@/lib/appwrite";
+import SuccessModal from "@/components/modals/SuccessModal";
+import useAuthStore from "@/store/auth.store";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const fetchAuthenticatedUser = useAuthStore((s) => s.fetchAuthenticatedUser);
 
   const submit = async () => {
     const { name, email, password } = form;
@@ -20,13 +24,19 @@ const SignUp = () => {
 
     try {
       await createUser({ name, email, password });
-      router.replace("/");
+      setShowSuccess(true);
     } catch (error: any) {
       Alert.alert("Error", error.message);
     } finally {
       setIsSubmitting(false);
     }
   };
+  const handleContinue = async () => {
+    setShowSuccess(false);
+    await fetchAuthenticatedUser();
+    router.replace("/");
+  };
+
   return (
     <View className={"gap-10 bg-white rounded-lg p-5 mt-6"}>
       <CustomInput
@@ -69,6 +79,13 @@ const SignUp = () => {
           Sign In
         </Link>
       </View>
+      <SuccessModal
+        visible={showSuccess}
+        message="SignUp successfull"
+        subText={"Welcome to your account!."}
+        buttonText="Go to Homepage"
+        onContinue={handleContinue}
+      />
     </View>
   );
 };

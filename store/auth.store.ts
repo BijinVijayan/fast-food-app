@@ -26,6 +26,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
   fetchAuthenticatedUser: async () => {
     set({ isLoading: true });
+    console.log("calllled root fetch user ");
 
     try {
       let user = await getCurrentUser();

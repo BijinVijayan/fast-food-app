@@ -67,7 +67,6 @@ const Search = () => {
               </View>
               <CartButton />
             </View>
-
             <SearchBar />
             <Filter categories={categories as unknown as Category[]} />
           </View>

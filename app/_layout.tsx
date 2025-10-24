@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import * as Sentry from "@sentry/react-native";
 import useAuthStore from "@/store/auth.store";
+import { ActivityIndicator, Image, View } from "react-native";
 
 Sentry.init({
   dsn: "https://441d0210d210ca8ebf6e1f27745ca310@o4510233040388096.ingest.us.sentry.io/4510233061949452",
@@ -50,7 +51,20 @@ export default Sentry.wrap(function RootLayout() {
   }, []);
 
   if (!fontsLoaded || isLoading) {
-    return null;
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <Image
+          source={require("../assets/images/logo.png")}
+          className="w-32 h-32 mb-6"
+          resizeMode="contain"
+        />
+        {/*<ActivityIndicator*/}
+        {/*  className={"absolute"}*/}
+        {/*  size="large"*/}
+        {/*  color="#fe8c00"*/}
+        {/*/>*/}
+      </View>
+    );
   }
 
   return <Stack screenOptions={{ headerShown: false }} />;

@@ -38,10 +38,11 @@ const TabBarIcon = ({
 );
 
 export default function TabLayout() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, isLoading } = useAuthStore();
   const totalItems = useCartStore((state) =>
     state.items.reduce((sum, item) => sum + item.quantity, 0),
   );
+  if (isLoading) return null;
   if (!isAuthenticated) return <Redirect href="/sign-in" />;
   return (
     <Tabs
