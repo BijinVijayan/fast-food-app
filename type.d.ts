@@ -63,6 +63,13 @@ interface PaymentInfoStripeProps {
   valueStyle?: string;
 }
 
+interface PaymentProps {
+  fullName: string;
+  email: string;
+  amount: string;
+  driverAddress: string;
+}
+
 interface ProfileDetailsProps {
   icon: ImageSourcePropType;
   value?: string;
